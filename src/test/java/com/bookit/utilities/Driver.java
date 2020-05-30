@@ -11,6 +11,9 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.URL;
+import java.util.logging.Logger;
+
+import static java.util.logging.Level.OFF;
 
 public class Driver {
 
@@ -51,6 +54,8 @@ public class Driver {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.addArguments("--start-maximized");
+                    Logger.getLogger("org.openqa.selenium").setLevel(OFF);
+                    System.setProperty("webdriver.chrome.silentOutput", "true"); //ignore chrome version logs
                     driverPool.set(new ChromeDriver(chromeOptions));
                     break;
                 case "chromeheadless":

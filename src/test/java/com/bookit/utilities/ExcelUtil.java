@@ -21,7 +21,7 @@ public class ExcelUtil {
             // Access the required test data sheet
             workBook = WorkbookFactory.create(ExcelFile);
             workSheet = workBook.getSheet(sheetName);
-            // check if sheet is null or not. null means  sheetname was wrong
+            // check if sheet is null or not. null means  sheet name was wrong
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

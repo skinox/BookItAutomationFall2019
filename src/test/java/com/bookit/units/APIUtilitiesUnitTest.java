@@ -11,6 +11,7 @@ public class APIUtilitiesUnitTest {
         String token = APIUtilities.getToken();
         String teacher_token = APIUtilities.getToken("teacher");
         String student_token = APIUtilities.getToken("student");
+
         Assert.assertNotNull(token);
         Assert.assertNotNull(student_token);
         Assert.assertNotNull(teacher_token);

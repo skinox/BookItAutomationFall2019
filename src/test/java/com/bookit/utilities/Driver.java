@@ -10,6 +10,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.logging.Logger;
 
@@ -19,6 +20,9 @@ public class Driver {
 
     //same for everyone
     private static final ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
+    public static final String USERNAME = "aidarjumaev1";
+    public static final String AUTOMATE_KEY = "zo3YMJYjy8vGTZULZVsw";
+    public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
     //so no one can create object of Driver class
     //everyone should call static getter method instead
@@ -104,6 +108,34 @@ public class Driver {
                     WebDriverManager.firefoxdriver().setup();
                     driverPool.set(new FirefoxDriver());
                     break;
+                case "browserstack-chrome":
+                    DesiredCapabilities caps = new DesiredCapabilities();
+                    caps.setCapability("browser", "Chrome");
+                    caps.setCapability("browser_version", "84.0 beta");
+                    caps.setCapability("os", "Windows");
+                    caps.setCapability("os_version", "10");
+                    caps.setCapability("resolution", "1920x1080");
+                    caps.setCapability("name", "Bookit Automation");
+                    try {
+                        driverPool.set(new RemoteWebDriver(new URL(URL), caps));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case "browser-android":
+                    DesiredCapabilities Android_caps = new DesiredCapabilities();
+                    Android_caps.setCapability("browserName", "android");
+                    Android_caps.setCapability("device", "Samsung Galaxy S20 Ultra");
+                    Android_caps.setCapability("realMobile", "true");
+                    Android_caps.setCapability("os_version", "10.0");
+                    Android_caps.setCapability("name", "Android Test");
+                    try {
+                        driverPool.set(new RemoteWebDriver(new URL(URL), Android_caps));
+                    } catch (MalformedURLException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+
                 default:
                     throw new RuntimeException("Wrong browser name!");
             }

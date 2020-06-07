@@ -34,7 +34,7 @@ public class Driver {
      * @return
      */
     public synchronized static WebDriver getDriver() {
-        String GRID_URL = "http://35.171.158.59:4444/wd/hub";
+        String GRID_URL = "http://3.236.14.239:4444/wd/hub";
         //if webdriver object doesn't exist
         //create it
         if (driverPool.get() == null) {
